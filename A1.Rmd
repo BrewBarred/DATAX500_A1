@@ -88,11 +88,11 @@ knitr::opts_chunk$set(echo = TRUE)
      t-test to test the following hypotheses:
    
    
-      **Null hypothesis:**
+      **Null hypothesis:** H0: U1 = U2
         
         - There is no difference in mean cholesterol levels between genders.
    
-      **Alternative hypothesis:**
+      **Alternative hypothesis:** H1: U1 != U2
         
         - There is a significant difference in mean cholesterol levels 
             between genders.
@@ -107,7 +107,7 @@ knitr::opts_chunk$set(echo = TRUE)
         t.test(chol~gender, data=heart)
         ```
         
-      **- Interpretation:**
+      **Interpretation:**
       
         - The Welch two-sample t-test provides **evidence to reject the null 
           hypothesis**, that **there will be no difference in mean cholesterol 
@@ -127,25 +127,24 @@ knitr::opts_chunk$set(echo = TRUE)
    Using the dataset provided, fit an apprpopriate statistical model of your
    choice. Make sure to include age as one of the predictors **(14 marks)**
 
-   Since _maximum heart rate_ and _age_ are both continuous variables, a regression
-   model will probably be suitable for this analysis where we test for a
-   relationship between ones age and their maximum heart rate.
+   Since _maximum heart rate_ and _age_ are both continuous variables, a 
+   regression model will probably be suitable for this analysis where we test 
+   for a relationship between ones age and their maximum heart rate.
   
      a) What are the null and alternative (two-sided) hypotheses associated with 
         age? **(2 marks)**
         
         
-        **Null hypothesis:** H₀: β₁ = 0
+        **Null hypothesis:** H0: B1 = 0
         
           - The regression coefficient for age is zero (i.e., age has no linear 
             effect on maximum heart rate.)
             
-            ### Note:
-            This means that for every x increase in age, we would not observe an 
-            increase in y for heart rate.
+            **Note:** This means that for every x increase in age, we should not 
+                      observe a fixed change in y for heart rate.
         
         
-        **Alternative hypothesis:** H₁: β₁ ≠ 0
+        **Alternative hypothesis:** H1: B1 != 0
         
           - There will be a significant relationship between age and maximum
             heart-rate.
@@ -155,7 +154,18 @@ knitr::opts_chunk$set(echo = TRUE)
         terms of the relationship between age and maximum heart rate? 
         **(3 marks)**
      
+      ```{r coefficient, echo=TRUE}
+      # again, peek at the dataset so we can see what we're working with
+      head(heart, n=2)
       
+      # store the mean maxheartrate in a variable
+      rate<-heart$maxheartrate
+      
+      # create a linear model using maxheartrate and age
+      model<-lm(maxheartrate ~ age, data=heart)
+      # ouput the model summary for analysis
+      summary(model)
+      ```
      
      
      c) Comment on the predictors you have included in the model and justify the inclusion of these variables in your         model **(3 marks)**
