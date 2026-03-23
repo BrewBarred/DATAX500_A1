@@ -13,177 +13,299 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Moodle Submission](https://elearn.waikato.ac.nz/mod/assign/view.php?id=2241094&action=editsubmission)
 
+[Download Handout](https://elearn.waikato.ac.nz/pluginfile.php/4467078/mod_assign/introattachment/0/Assignment%201.pdf?forcedownload=1)
 --------------------------------------------------------------------------------
 
 # Assignment 1
 
-1. Using the '_heart.csv_' data-set, calculate the following statistical 
-   measures for age in _R_ **(6 marks)**
+1. Using the '_heart.csv_' data-set, calculate the following statistical measures for age in _R_ 
+---------------------------------------------------------------------------------------------------------------------
    
+First, we load the data-set:
    
-  - First, we load the data-set:
-   
-      ```{r load, echo=TRUE}
-      # load automatically via git files
-      heart<-read.csv("Heart.csv")
-      
-      
-      ## Alternatively, load the dataset manually using:
-      # heart<-read.csv(file.choose())
-      ```
-     
-  a) Mean **(2 marks)**
-           
-      ```{r mean, echo=TRUE}      
-      # assign age column to "age" var for easier processing
-      age<-heart$age
-      
-      # calculate the mean age
-      mean_age<-mean(age)
-      mean_age
-      
-      # round to 2 d.p.
-      mean_age<-round(mean_age, 2)
-      mean_age
-      ```
-        
-        
-  b) Median **(2 marks)**
-           
-      ```{r median, echo=TRUE}      
-      # calculate the median age
-      median_age<-median(age)
-      median_age
-      ```
-        
-  c) Sample standard deviation **(2 marks)**
+  ```{r load, echo=TRUE}
+  # load automatically via git files
+  heart<-read.csv("Heart.csv")
   
-      ```{r sd, echo=TRUE}      
-      # calculate the sample standard deviation
-      sd_age<-sd(age)
-      sd_age
-      
-      # round sample standard deviation to 2 d.p.
-      sd_age<-round(sd_age, 2)
-      sd_age
-      ```
-
-
-
-----------------------------------------------------------------------------------------------------------------------
-
-2. A researcher wishes to investigate the relationship between gender and 
-   cholesterol levels.
-   
-   Key-points to notice here is that **we are measuring cholesterol levels** 
-   based on gender, making **cholesterol** the _dependent variable_, and 
-  **gender** the _independent variable_.
-   
-   Using the dataset, perform an _appropriate statistical test_ in _R_ and 
-   interpret the output. Your answer should include a **null hypothesis**, an 
-   **alternative hypothesis **, and a  **p-value ** **(5 marks)**
-   
-   - Since _gender_ (categorical) and _cholesterol_ (continuous) are 
-     **independent** from eachother, we conduct an independent (two-sampled) 
-     t-test to test the following hypotheses:
-   
-   
-      **Null hypothesis:** H0: U1 = U2
-        
-        - There is no difference in mean cholesterol levels between genders.
-   
-      **Alternative hypothesis:** H1: U1 != U2
-        
-        - There is a significant difference in mean cholesterol levels 
-            between genders.
-        
-      **p-value:**
-            
-        ```{r p-value, echo=TRUE}
-        # peek at the dataset so we can view the column names
-        head(heart, n=2)
-        
-        # perform a t-test on the heart data set between chol and gender
-        t.test(chol~gender, data=heart)
-        ```
-        
-      **Interpretation:**
-      
-        - The Welch two-sample t-test provides **evidence to reject the null 
-          hypothesis**, that **there will be no difference in mean cholesterol 
-          levels between genders, _p_=0.003**.
-        
-        - This interpretation is further supported with **a large t-value of 
-          2.98.**
-        
-        - **Further testing is recommended** to determine the source or 
-          magnitude of this cholesterol difference.
-      
-        
- 
-----------------------------------------------------------------------------------------------------------------------
-
-3. A researcher wishes to investigate the predictors of maximum heart rate.
-   Using the dataset provided, fit an apprpopriate statistical model of your
-   choice. Make sure to include age as one of the predictors **(14 marks)**
-
-   Since _maximum heart rate_ and _age_ are both continuous variables, a 
-   regression model will probably be suitable for this analysis where we test 
-   for a relationship between ones age and their maximum heart rate.
   
-     a) What are the null and alternative (two-sided) hypotheses associated with 
-        age? **(2 marks)**
-        
-        
-        **Null hypothesis:** H0: B1 = 0
-        
-          - The regression coefficient for age is zero (i.e., age has no linear 
-            effect on maximum heart rate.)
-            
-            **Note:** This means that for every x increase in age, we should not 
-                      observe a fixed change in y for heart rate.
-        
-        
-        **Alternative hypothesis:** H1: B1 != 0
-        
-          - There will be a significant relationship between age and maximum
-            heart-rate.
-            
-     
-     b) What is the estimated coefficient of age and what does this imply in 
-        terms of the relationship between age and maximum heart rate? 
-        **(3 marks)**
-     
-      ```{r coefficient, echo=TRUE}
-      # again, peek at the dataset so we can see what we're working with
-      head(heart, n=2)
+  ## Alternatively, load the dataset manually using:
+  # heart<-read.csv(file.choose())
+  ```
       
-      # store the mean maxheartrate in a variable
-      rate<-heart$maxheartrate
-      
-      # create a linear model using maxheartrate and age
-      model<-lm(maxheartrate ~ age, data=heart)
-      # ouput the model summary for analysis
-      summary(model)
-      ```
-     
-     
-     c) Comment on the predictors you have included in the model and justify the inclusion of these variables in your         model **(3 marks)**
-     
-     
-     
-     
-     d) interpret the model output in plain English. Your interpretation must include the p-value associated with each        coefficient (slopes and intercept) test, and R-squared value **(3 marks)**
-     
-     
-     
-     
-     e) Comment on whether the assumptions of a linear regression model have been met. Include appropriate statistical        plots to support your answer **(3 marks)**
+(6 marks)
+
+### a) Mean 
+               
+  ```{r mean, echo=TRUE}      
+  # assign age column to "age" var for easier processing
+  age<-heart$age
+  
+  # calculate the mean age
+  mean_age<-mean(age)
+  mean_age
+  
+  # round to 2 d.p.
+  mean_age<-round(mean_age, 2)
+  mean_age
+  ```
+  
+(2 marks)
+
+### b) Median 
+           
+  ```{r median, echo=TRUE}      
+  # calculate the median age
+  median_age<-median(age)
+  median_age
+  ```
+  
+(2 marks)
+
+### c) Sample standard deviation 
+
+  ```{r sd, echo=TRUE}      
+  # calculate the sample standard deviation
+  sd_age<-sd(age)
+  sd_age
+  
+  # round sample standard deviation to 2 d.p.
+  sd_age<-round(sd_age, 2)
+  sd_age
+  ```
+
+(2 marks)
+
+---------------------------------------------------------------------------------------------------------------------
+
+2. A researcher wishes to investigate the relationship between _gender_ and _cholesterol levels_
+---------------------------------------------------------------------------------------------------------------------
    
+Key-points to notice here is that **we are measuring cholesterol levels** 
+based on gender, making **cholesterol** the _dependent variable_, and 
+**gender** the _independent variable_.
+
+Using the heart.csv data set, select and perform an _appropriate statistical_ 
+_test_ in _R_ and interpret the output. Your answer should include a **null**
+**hypothesis**, an **alternative hypothesis **, and a **p-value ** 
+
+Since _gender_ (categorical) and _cholesterol_ (continuous) are **independent** 
+from each other, we can conduct an independent (two-sampled) t-test to test the 
+following hypotheses:
+   
+   
+### Null hypothesis:
+        
+  - There will be no difference in mean cholesterol levels between genders.
+    (H0: U1 = U2)
+   
+### Alternative hypothesis:
+        
+  - There will be a significant difference in mean cholesterol levels between 
+    genders.
+    (H1: U1 != U2)
+        
+### Results:
+      
+  ```{r p-value, echo=TRUE}
+  # peek at the dataset so we can view the column names
+  head(heart, n=2)
+  
+  # perform a t-test on the heart data set between chol and gender
+  t.test(chol~gender, data=heart)
+  ```
+
+### _p_-value:
+
+  _p_ = 0.003 (3.d.p.)
+
+### **Interpretation:**
+  
+  - The Welch two-sample t-test provides **evidence to reject the null 
+    hypothesis**, that **there will be no difference in mean cholesterol 
+    levels between genders, _p_=0.003** (3 d.p.).
+  
+  - This interpretation is further supported with **a large t-value of 
+    2.98.**
+  
+  - **Further testing is recommended** to determine the source or 
+    magnitude of this cholesterol difference.
+    
+  - With _95% confidence_, we can assume that the **true mean difference**
+    will be somewhere between 7.29 and 36.17 (2 d.p.)**.
+    
+  - Broadly analyzing the data, an apparent **mean difference of ~22** between 
+    group 0 and group 1 exists, providing more **evidence to reject the null** 
+    hypothesis, that there is no difference between the means, regardless of 
+    gender (for each group).
+      
+(5 marks)
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+3. A researcher wishes to investigate the predictors of maximum heart rate. Using the data set provided, fit an appropriate statistical model of your choice. Make sure to include age as one of the predictors 
+---------------------------------------------------------------------------------------------------------------------
+  
+### a) What are the null and alternative (two-sided) hypotheses associated with age?
+        
+  - **Null hypothesis:** H0: B1 = 0
+  
+    - The regression coefficient for age is zero (i.e., age has no linear 
+    effect on maximum heart rate.)
+      
+    _**Note:** This means that for every _x_ increase in age, no predictable change in _y_ is observed._
+  
+  - **Alternative hypothesis:** H1: B1 != 0
+  
+    There will be a significant relationship between age and maximum
+    heart-rate.
+
+(2 marks)
+
+### b) What is the estimated coefficient of age and what does this imply in terms of the relationship between age and maximum heart rate? 
+      
+  ```{r coefficient, echo=TRUE}
+  # again, peek at the dataset so we can see what we're working with
+  head(heart, n=2)
+  
+  # store the mean maxheartrate in a variable
+  rate<-heart$maxheartrate
+  
+  # create a multiple linear regression model to predict max heart rate 
+  # given an age and gender
+  model<-lm(rate ~ age + gender, data=heart)
+  
+  # ouput the model summary for analysis
+  summary(model)
+  ```
+
+### Estimated coefficient of age:
+  
+  -1.0277
+  
+### Implications (in terms of relationship with max heart rate):
+  
+  This model indicates a _negative linear_ relationship. For _every
+  one-year increase in **age**, the **maximum heart rate** is estimated
+  to **decrease by ~1.028 bpm (3 d.p.)**_, regardless of gender.
+  
+(3 marks)
+     
+### c) Comment on the predictors you have included in the model and justify the inclusion of these variables in your model 
+        
+I chose to use **age** and **gender** for my predictors in this model. These are 
+both _common demographic predictors_ and often enable clearer, more informative 
+interpretations. 
+
+It is understood that ones cardiovascular health typically deteriorates with 
+age, but it's unclear if this is true for both Men, and Women. Using **age** and 
+**gender** as _predictors_ in this model will allow us to estimate the
+relationship between **age** and **maximum heart rate** while **controlling for**
+**gender**
+
+  - **Age:** _Age_ is a **continuous** variable, making it **suitable for** 
+             **regression**. I chose this not only due to its common use 
+             in other studies, especially health studies, but also because
+             an individual's maximum heart rate is likely to decline as they get
+             older - this predictor allows us to quantify that change.
+  
+  - **Gender:** _Gender_ is a categorical variable (0=male, 1=female).
+                Controlling for gender helps to distinguish differences between
+                Males and Females and is likely to increase the accuracy of our
+                estimations.
+        
+(3 marks)
+     
+     
+### d) Interpret the model output in plain English. Your interpretation must include the p-value associated with each coefficient (slopes and intercept) test, and R-squared value 
+     
+The model provides the following insights:
+
+- Age is a highly significant predictor (_p_ = 6.17e-13, _t_ = -7.542). We can 
+  say with 99.9% confidence that as age increases, maximum heart rate decreases,
+  regardless of gender.
+  
+- Gender (_p_ = 0.058 (3.d.p.)) is slightly above the the 0.05 threshold, 
+  suggesting that while there is a trend, gender is not a statistically 
+  significant predictor in this model, at least, not at the 95% confidence 
+  level.
+
+- Intercept (_p_ < 2e-16) is highly significant, much lower than the threshold
+  of 0.05. This suggests that the baseline of this model is statistically valid.
+  
+- Model accuracy: The multiple R squared value of 0.1683 suggests that only
+                  approximately 16.8% of the variance in our data can be
+                  explained by age and gender. While some relationship exists,
+                  and is significant, there are probably some other factors
+                  that could better predict the change in maximum heart rate 
+                  as age increases.
+
+In summary, we have strong evidence to reject the null hypothesis for age, that 
+the regression coefficient will be zero, regardless of gender.
+
+(3 marks)
+
+### e) Comment on whether the assumptions of a linear regression model have been met. Include appropriate statistical plots to support your answer
+
+Appropriate statistical plots:
+        
+  ```{r plots, echo=TRUE}
+  # generate some plots to evaluate the regression assumptions:
+    ## Linearity, Independence, Homoscedasticity and Normality
+  
+  # create a 2x2 grid of diagnostic plots
+  #par(mfrow=c(2,2)) # uncomment for small grid-style output
+  
+  # plot appropriate statistical plots
+  plot(model)
+  ```
+  
+### e) Commentary on Model Assumptions
+
+Based on the diagnostic plots, the assumptions for this linear regression are largely satisfied, though there are a
+few minor deviations:
+
+### Linearity (Residuals vs Fitted): 
+
+  The red line is relatively flat and stays close to the zero line. This 
+  suggests that the relationship between the predictors (age and gender) and 
+  maximum heart rate is correctly modeled as linear. There is no obvious "U" 
+  shape that would suggest we missed a non-linear trend.
+
+###Normality (Q-Q Residuals): 
+
+  The points follow the dashed diagonal line very closely through the middle. 
+  There is a tiny bit of "wavering" at the extreme ends (specifically points 
+  273 and 239), but it's not severe enough to violate the assumption of normally 
+  distributed residuals.
+
+### Homoscedasticity (Scale-Location):
+
+  The red line is nearly horizontal, and the "cloud" of points has a fairly 
+  consistent vertical spread across the whole x-axis. This indicates constant 
+  variance (no "fan" shape), meaning the model is equally accurate 
+  (or inaccurate) across all age groups.
+
+### Influential Outliers (Residuals vs Leverage): 
+
+  All points fall well within the dashed red boundaries for Cook’s Distance. 
+  While points 273, 239, and 85 are labeled as having higher leverage or larger 
+  residuals, they aren't "pulling" the model enough to be considered problematic 
+  outliers that would invalidate the results.
+  
+### Independence (Study design):
+
+  Since each observation in this data set represents a separate, unrelated 
+  individual patient with no repeated measures, independence can be assumed.
+
+(3 marks)
+
+(14 marks)     
+        
+---------------------------------------------------------------------------------------------------------------------
  
-----------------------------------------------------------------------------------------------------------------------
- 
-## Data dictionary:
+Data dictionary:
+---------------------------------------------------------------------------------------------------------------------
 
 cp: chest pain type
 
@@ -202,45 +324,50 @@ chol:
 
 gender: 
 
+0. male;
 1. female;
-2. male;
 
 fbs: (fasting blood sugar > 120 mg/dl)
 
 0. False
 1. True
 
-
 rest_ecg: resting electrocardiographic result
 
 0. Normal
-1. Having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV)
-2. Showing probably or definite left ventricular hypertrophy by Estes' criteria
+1. Having ST-T wave abnormality (T wave inversions and/or ST elevation or 
+   depression of > 0.05 mV)
+2. Showing probably or definite left ventricular hypertrophy by Estes' criterion
 
-----------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
 
+## Regression Assumption Notes:
 
+### Linearity: 
+  - **Residual/fitted plots** should be relatively flat and close to zero.
+  - A curved or "U-shaped" line suggests a non-linear relationship 
+    (consider transforming or adding polynomial terms)
 
+### Normality:
+  - The **Q-Q Residuals plots** should follow the diagonal dashed line closely.
+  - Minor deviation at the tails is acceptable, but strong "S-curves" or heavy
+    tailing suggests non-normal residuals 
+    (consider transforming the response variable)
 
+### Homoscedasticity: 
+  - The **Scale-Location plots'** red line should be nearly horizontal with an even
+    spread of points. A "fan" shape (spread increasing left to right) indicates 
+    heteroscedasticity (constant variances is violated, consider transformation 
+    or weighted regression)
 
+### Independence: 
+  - Cannot be visually verified, but rather, justified by study design. If each
+    observation is a separate, unrelated individual/event with no repeated 
+    measures or time-series structure, independence can be reasonably assumed.
+    
+### Influential Outliers:
+  - Any points outside Cook's Distance boundaries (dashed red lines) in the 
+    **Residuals vs. Leverage plot** are influential, and may be distorting the
+    model (consider investigating or removing them with justification)
 
-
-
-
-
-
-
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+---------------------------------------------------------------------------------------------------------------------
