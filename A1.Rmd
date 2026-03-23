@@ -15,6 +15,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 1. Using the '_heart.csv_' data-set, calculate the following statistical measures
    for age in _R_ **(6 marks)**
+   
+   First, we need to Load the heart.csv data-set:
+   
+```{r load, echo=TRUE}
+heart<-read.csv(file.choose())
+heart
+```
      
       a) Mean **(2 marks)**
            
