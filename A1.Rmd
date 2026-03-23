@@ -1,0 +1,135 @@
+---
+title: "DATAX500"
+author: "1631819"
+date: "2026-03-22"
+output: pdf_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+--------------------------------------------------------------------------------
+[View moodle submission](https://elearn.waikato.ac.nz/mod/assign/view.php?id=2241094&action=editsubmission)
+--------------------------------------------------------------------------------
+
+# Assignment 1
+
+1. Using the '_heart.csv_' data-set, calculate the following statistical measures
+   for age in _R_ **(6 marks)**
+     
+      a) Mean **(2 marks)**
+           
+        
+        
+      b) Median **(2 marks)**
+           
+        
+        
+      c) Sample standard deviation **(2 marks)**
+
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+2. A researcher wishes to investigate the relationship between gender and 
+   cholesterol levels. Using the dataset, perform an appropriate statistical
+   test in R and comment on the output. Your answer should include null
+   null hypothesis, alternative hypothesis, and p-value **(5 marks)**
+   
+    - Null hypothesis:
+   
+    - Alternative hypothesis:
+   
+    - p-value:
+ 
+----------------------------------------------------------------------------------------------------------------------
+
+3. A researcher wishes to investigate the predictors of maximum heart rate.
+   Using the dataset provided, fit an apprpopriate statistical model of your
+   choice. Make sure to include age as one of the predictors **(14 marks)**
+
+     a) What are the null and alternative (two-sided) hypotheses associated with age? **(2 marks)**
+     
+     
+     
+     
+     b) What is the estimated coefficient of age and what does this imply in terms of the relationship between age and        maximum heart rate? **(3 marks)**
+     
+     
+     
+     
+     c) Comment on the predictors you have included in the model and justify the inclusion of these variables in your         model **(3 marks)**
+     
+     
+     
+     
+     d) interpret the model output in plain English. Your interpretation must include the p-value associated with each        coefficient (slopes and intercept) test, and R-squared value **(3 marks)**
+     
+     
+     
+     
+     e) Comment on whether the assumptions of a linear regression model have been met. Include appropriate statistical        plots to support your answer **(3 marks)**
+   
+ 
+----------------------------------------------------------------------------------------------------------------------
+ 
+## Data dictionary:
+
+cp: chest pain type
+
+  1. typical angina
+  2. atypical angina 
+  3. non-anginal pain
+  4. asymptomatic
+
+trtbps:
+
+- resting blood pressure (in mm Hg)
+
+chol:
+
+- cholesterol (in mg/dl)
+
+gender: 
+
+1. female;
+2. male;
+
+fbs: (fasting blood sugar > 120 mg/dl)
+
+0. False
+1. True
+
+
+rest_ecg: resting electrocardiographic result
+
+0. Normal
+1. Having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV)
+2. Showing probably or definite left ventricular hypertrophy by Estes' criteria
+
+----------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
