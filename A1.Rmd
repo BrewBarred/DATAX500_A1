@@ -6,6 +6,7 @@ output: pdf_document
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+#tinytex::install_tinytex(force = TRUE)
 ```
 --------------------------------------------------------------------------------
 [View moodle submission](https://elearn.waikato.ac.nz/mod/assign/view.php?id=2241094&action=editsubmission)
@@ -16,33 +17,67 @@ knitr::opts_chunk$set(echo = TRUE)
 1. Using the '_heart.csv_' data-set, calculate the following statistical measures
    for age in _R_ **(6 marks)**
    
-   First, we need to Load the heart.csv data-set:
    
-```{r load, echo=TRUE}
-heart<-read.csv(file.choose())
-heart
-```
+  - First, we Load the data-set:
+   
+      ```{r load, echo=TRUE}
+      # load automatically via git files
+      heart<-read.csv("Heart.csv")
+      
+      
+      ## Alternatively, load the dataset manually using:
+      # heart<-read.csv(file.choose())
+      ```
      
-      a) Mean **(2 marks)**
+  a) Mean **(2 marks)**
            
+      ```{r mean, echo=TRUE}      
+      # assign age column to "age" var for easier processing
+      age<-heart$age
+      
+      # calculate the mean age
+      mean_age<-mean(age)
+      mean_age
+      
+      # round to 2 d.p.
+      mean_age<-round(mean_age, 2)
+      mean_age
+      ```
         
         
-      b) Median **(2 marks)**
+  b) Median **(2 marks)**
            
+      ```{r median, echo=TRUE}      
+      # calculate the median age
+      median_age<-median(age)
+      median_age
+      ```
         
-        
-      c) Sample standard deviation **(2 marks)**
+  c) Sample standard deviation **(2 marks)**
+  
+      ```{r sd, echo=TRUE}      
+      # calculate the sample standard deviation
+      sd(age)
+      ```
 
 
 
 ----------------------------------------------------------------------------------------------------------------------
 
 2. A researcher wishes to investigate the relationship between gender and 
-   cholesterol levels. Using the dataset, perform an appropriate statistical
-   test in R and comment on the output. Your answer should include null
-   null hypothesis, alternative hypothesis, and p-value **(5 marks)**
+   cholesterol levels. 
    
-    - Null hypothesis:
+   Using the dataset, perform an appropriate statistical test in R and comment 
+   on the output. Your answer should include a null and alternative hypothesis, 
+   as well as a p-value **(5 marks)**
+   
+   - Since gender (categorical) and cholesterol (continuous) are independent 
+     from eachother, we conduct an independent (two-sampled) t-test. But first,
+     we define some hypotheses:
+   
+        - Null hypothesis:
+            - There will be no difference in cholesterol levels between Males
+              and Females.
    
     - Alternative hypothesis:
    
