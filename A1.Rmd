@@ -9,13 +9,16 @@ knitr::opts_chunk$set(echo = TRUE)
 #tinytex::install_tinytex(force = TRUE)
 ```
 --------------------------------------------------------------------------------
-[View moodle submission](https://elearn.waikato.ac.nz/mod/assign/view.php?id=2241094&action=editsubmission)
+[Github Repository](https://github.com/BrewBarred/DATAX500_A1)
+
+[Moodle Submission](https://elearn.waikato.ac.nz/mod/assign/view.php?id=2241094&action=editsubmission)
+
 --------------------------------------------------------------------------------
 
 # Assignment 1
 
-1. Using the '_heart.csv_' data-set, calculate the following statistical measures
-   for age in _R_ **(6 marks)**
+1. Using the '_heart.csv_' data-set, calculate the following statistical 
+   measures for age in _R_ **(6 marks)**
    
    
   - First, we load the data-set:
@@ -85,16 +88,16 @@ knitr::opts_chunk$set(echo = TRUE)
      t-test to test the following hypotheses:
    
    
-      **- Null hypothesis:**
+      **Null hypothesis:**
         
-          - There is no difference in mean cholesterol levels between genders.
+        - There is no difference in mean cholesterol levels between genders.
    
-      **- Alternative hypothesis:**
+      **Alternative hypothesis:**
         
-          - There is a significant difference in mean cholesterol levels 
+        - There is a significant difference in mean cholesterol levels 
             between genders.
         
-      **- p-value:**
+      **p-value:**
             
         ```{r p-value, echo=TRUE}
         # peek at the dataset so we can view the column names
@@ -107,9 +110,14 @@ knitr::opts_chunk$set(echo = TRUE)
       **- Interpretation:**
       
         - The Welch two-sample t-test provides **evidence to reject the null 
-        hypothesis**, that **there will be no difference in mean cholesterol 
-        levels between genders, _p_=0.003**. Further testing would be required 
-        to determine the source and magnitude of this cholesterol difference.
+          hypothesis**, that **there will be no difference in mean cholesterol 
+          levels between genders, _p_=0.003**.
+        
+        - This interpretation is further supported with **a large t-value of 
+          2.98.**
+        
+        - **Further testing is recommended** to determine the source or 
+          magnitude of this cholesterol difference.
       
         
  
@@ -119,14 +127,35 @@ knitr::opts_chunk$set(echo = TRUE)
    Using the dataset provided, fit an apprpopriate statistical model of your
    choice. Make sure to include age as one of the predictors **(14 marks)**
 
-     a) What are the null and alternative (two-sided) hypotheses associated with age? **(2 marks)**
+   Since _maximum heart rate_ and _age_ are both continuous variables, a regression
+   model will probably be suitable for this analysis where we test for a
+   relationship between ones age and their maximum heart rate.
+  
+     a) What are the null and alternative (two-sided) hypotheses associated with 
+        age? **(2 marks)**
+        
+        
+        **Null hypothesis:** H₀: β₁ = 0
+        
+          - The regression coefficient for age is zero (i.e., age has no linear 
+            effect on maximum heart rate.)
+            
+            ### Note:
+            This means that for every x increase in age, we would not observe an 
+            increase in y for heart rate.
+        
+        
+        **Alternative hypothesis:** H₁: β₁ ≠ 0
+        
+          - There will be a significant relationship between age and maximum
+            heart-rate.
+            
      
+     b) What is the estimated coefficient of age and what does this imply in 
+        terms of the relationship between age and maximum heart rate? 
+        **(3 marks)**
      
-     
-     
-     b) What is the estimated coefficient of age and what does this imply in terms of the relationship between age and        maximum heart rate? **(3 marks)**
-     
-     
+      
      
      
      c) Comment on the predictors you have included in the model and justify the inclusion of these variables in your         model **(3 marks)**
