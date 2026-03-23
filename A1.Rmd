@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
    for age in _R_ **(6 marks)**
    
    
-  - First, we Load the data-set:
+  - First, we load the data-set:
    
       ```{r load, echo=TRUE}
       # load automatically via git files
@@ -57,7 +57,12 @@ knitr::opts_chunk$set(echo = TRUE)
   
       ```{r sd, echo=TRUE}      
       # calculate the sample standard deviation
-      sd(age)
+      sd_age<-sd(age)
+      sd_age
+      
+      # round sample standard deviation to 2 d.p.
+      sd_age<-round(sd_age, 2)
+      sd_age
       ```
 
 
@@ -65,23 +70,48 @@ knitr::opts_chunk$set(echo = TRUE)
 ----------------------------------------------------------------------------------------------------------------------
 
 2. A researcher wishes to investigate the relationship between gender and 
-   cholesterol levels. 
+   cholesterol levels.
    
-   Using the dataset, perform an appropriate statistical test in R and comment 
-   on the output. Your answer should include a null and alternative hypothesis, 
-   as well as a p-value **(5 marks)**
+   Key-points to notice here is that **we are measuring cholesterol levels** 
+   based on gender, making **cholesterol** the _dependent variable_, and 
+  **gender** the _independent variable_.
    
-   - Since gender (categorical) and cholesterol (continuous) are independent 
-     from eachother, we conduct an independent (two-sampled) t-test. But first,
-     we define some hypotheses:
+   Using the dataset, perform an _appropriate statistical test_ in _R_ and 
+   interpret the output. Your answer should include a **null hypothesis**, an 
+   **alternative hypothesis **, and a  **p-value ** **(5 marks)**
    
-        - Null hypothesis:
-            - There will be no difference in cholesterol levels between Males
-              and Females.
+   - Since _gender_ (categorical) and _cholesterol_ (continuous) are 
+     **independent** from eachother, we conduct an independent (two-sampled) 
+     t-test to test the following hypotheses:
    
-    - Alternative hypothesis:
    
-    - p-value:
+      **- Null hypothesis:**
+        
+          - There is no difference in mean cholesterol levels between genders.
+   
+      **- Alternative hypothesis:**
+        
+          - There is a significant difference in mean cholesterol levels 
+            between genders.
+        
+      **- p-value:**
+            
+        ```{r p-value, echo=TRUE}
+        # peek at the dataset so we can view the column names
+        head(heart, n=2)
+        
+        # perform a t-test on the heart data set between chol and gender
+        t.test(chol~gender, data=heart)
+        ```
+        
+      **- Interpretation:**
+      
+        - The Welch two-sample t-test provides **evidence to reject the null 
+        hypothesis**, that **there will be no difference in mean cholesterol 
+        levels between genders, _p_=0.003**. Further testing would be required 
+        to determine the source and magnitude of this cholesterol difference.
+      
+        
  
 ----------------------------------------------------------------------------------------------------------------------
 
