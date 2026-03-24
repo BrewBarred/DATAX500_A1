@@ -151,14 +151,14 @@ following hypotheses:
   - **Null hypothesis:** H0: B1 = 0
   
     - The regression coefficient for age is zero (i.e., age has no linear 
-    effect on maximum heart rate.)
+      effect on maximum heart rate.)
       
     _**Note:** This means that for every _x_ increase in age, no predictable change in _y_ is observed._
   
   - **Alternative hypothesis:** H1: B1 != 0
   
-    There will be a significant relationship between age and maximum
-    heart-rate.
+    - There will be a significant relationship between age and maximum
+      heart-rate.
 
 (2 marks)
 
